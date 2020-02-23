@@ -1,0 +1,30 @@
+<div id="result">
+  <div>
+    <div id="floors" *ngFor="let floor of floors">
+      <img [src]="floor.img"/>
+    </div>
+  </div>
+  <div *ngIf="numOfThrows!=1">מספר הזריקות המקסימלי לבצע כדי לגלות את הקומה ממנה מתנפצים הכדורים הוא:
+    <h2>{{numOfThrows}}</h2>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">בחירת מספר קומות</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>שלום יוסף שלוסברג. אנא בחר מספר קומות על מנת שנוכל לחשב מה מספר הזריקות המקסימלי :)</p>
+  </div>
+  <form #form = "ngForm" (ngSubmit) = "updateNumOfFloors(form.value)" >
+    <label> בחר את מספר הקומות בבניין</label>
+    <input type = "text" name = "numOfFloors" placeholder = "100" ngModel>
+    <input type = "submit" value = "אשר">
+  </form>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
